@@ -14,3 +14,4 @@ you must download yolov3-tiny.weights from :https://github.com/smarthomefans/dar
 
 # Test 
 ![Screenshot](detected_fall.png)
+![notSS](not.jpg)
