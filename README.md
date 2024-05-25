@@ -11,3 +11,6 @@ you must download yolov3-tiny.weights from :https://github.com/smarthomefans/dar
 # limitation 
 1-the model is not so accurate but the algorithm at some point will detect the fall and it will immediately send the alert
 2-It's working on the CPU only because it's directed to low-end devices 
+
+# Test 
+![Screenshot](detected_fall.png)
