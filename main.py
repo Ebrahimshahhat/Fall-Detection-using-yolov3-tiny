@@ -76,13 +76,14 @@ while True:
                     width = x + w - x
                     threshold = height - width
 
-                    cvzone.cornerRect(frame, [x, y, w, h], l=15, rt=3)
-                    cvzone.putTextRect(frame, f'{classes[class_id]} {confidence}%', [x + 8, y - 12], thickness=1,
-                                       scale=0.2)
+                    cvzone.cornerRect(frame, [x, y, w, h], l=15, rt=2,colorR=(0, 255, 0))
+                    cvzone.putTextRect(frame, f'{classes[class_id]} {round(confidence*100)}%', [x + 8, y - 12], thickness=1,
+                                       scale=1)
 
                     if threshold < 0:
                         cv2.putText(frame, 'Fall Detected', (x, y - 32), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2,
                                     cv2.LINE_AA)
+                        cvzone.cornerRect(frame, [x, y, w, h], l=15, rt=2,colorR=(0, 0, 255))
                         if frame_id%5 ==0:
                             image_path = "detected_fall.png"
                             cv2.imwrite(image_path, frame)
@@ -90,14 +91,7 @@ while True:
 
                 label = str(classes[class_id])
                 color = colors[class_id]
-                cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
-                cv2.putText(frame, label + " " + str(round(confidence, 2)), (x, y + 30), font, 1, (255, 255, 255), 2)
 
-
-
-
- 
-            
 
     elapsed_time = time.time() - starting_time
     fps=frame_id/elapsed_time
@@ -110,4 +104,4 @@ while True:
         break;
     
 cap.release()    
-cv2.destroyAllWindows()    
+cv2.destroyAllWindows()  
