@@ -1,7 +1,7 @@
 # Fall-Detection-using-yolov3-tiny
 it's developed for low-end devices and will work with a fair fps 
 It uses Pushover API to send notifications to a mobile device 
-
+you must download yolov3-tiny.weights from :https://github.com/smarthomefans/darknet-test/blob/master/yolov3-tiny.weights
 
 # Usage
 1- Edit the API key and token key for your Pushover account
@@ -10,4 +10,4 @@ It uses Pushover API to send notifications to a mobile device
 
 # limitation 
 1-the model is not so accurate but the algorithm at some point will detect the fall and it will immediately send the alert
-2-it's working on CPU only because it's directed to low-end devices 
+2-It's working on the CPU only because it's directed to low-end devices 
