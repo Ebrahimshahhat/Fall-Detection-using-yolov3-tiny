@@ -3,7 +3,6 @@ import numpy as np
 import cvzone
 import time
 import requests
-import os
 
 #Pushover Api method
 
@@ -14,17 +13,17 @@ def send_pushover_notification(user_key, app_token, message):
         'user': user_key,
         'message': message
     }
-    response = requests.post(url, data=data)
+    files = {'attachment': open(image_path, 'rb')} if image_path else None
+    response = requests.post(url, data=data,files=files)
     if response.status_code == 200:
         print("Notification sent successfully.")
     else:
         print("Failed to send notification. Status code:", response.status_code)
-#Api cred
-user_key = 'User_Key'
-app_token = 'Application_tocken'
+#Api cred>> replace them with yours
+user_key = 'User_key'
+app_token = 'Application_token'
 message = "Someone Fell , Help'em "        
 #model insertion
-time.sleep(5)
 net = cv2.dnn.readNet("yolov3-tiny.weights", "yolov3-tiny.cfg")
 layer_names = net.getLayerNames()
 output_layers = [layer_names[i - 1] for i in net.getUnconnectedOutLayers()]
@@ -85,7 +84,8 @@ while True:
                         cv2.putText(frame, 'Fall Detected', (x, y - 32), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2,
                                     cv2.LINE_AA)
                         if frame_id%5 ==0:
-
+                            image_path = "detected_fall.png"
+                            cv2.imwrite(image_path, frame)
                             send_pushover_notification(user_key, app_token, message)
 
                 label = str(classes[class_id])
